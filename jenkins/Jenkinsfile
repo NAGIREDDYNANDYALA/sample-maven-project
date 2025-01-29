@@ -4,16 +4,24 @@ pipeline{
     }
     tools {
         maven 'maven'
-        
+        git 'git'
+    }
+    parameters {
+    string defaultValue: 'sivanagireddy', name: 'FirstName'
+    }
+
+    envronment{
+        NAME = "NagiReddy"
     }
     stages{
         stage('Build'){
             steps{
                 sh "mvn clean package"
+                echo "Hello, $NAME ${params.FirstName}" 
             }
             post {
             success {
-                archiveArtifacts artifacts: '**/target/*.jar'
+                archiveArtifacts artifacts: '**/target/*.war'
                 }
             }
         }
