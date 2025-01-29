@@ -10,7 +10,7 @@ pipeline{
     string defaultValue: 'sivanagireddy', name: 'FirstName'
     }
 
-    environment{
+    envronment{
         NAME = "NagiReddy"
     }
     stages{
@@ -18,6 +18,21 @@ pipeline{
             steps{
                 sh "mvn clean package"
                 echo "Hello, $NAME ${params.FirstName}" 
+            }
+            
+        }
+        stage('test'){
+            parallel {
+                stage(testA){
+                    steps {
+                        echo 'it is testA'
+                    }
+                }
+                stage(testB){
+                    steps{
+                        echo "this is testB"
+                    }
+                }
             }
             post {
             success {
