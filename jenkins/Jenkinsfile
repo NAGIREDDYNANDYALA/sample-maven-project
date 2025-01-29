@@ -10,7 +10,7 @@ pipeline{
     string defaultValue: 'sivanagireddy', name: 'FirstName'
     }
 
-    envronment{
+    environment{
         NAME = "NagiReddy"
     }
     stages{
